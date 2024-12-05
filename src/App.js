@@ -12,28 +12,42 @@ const App = () => {
     }
   };
 
+  // Handle Enter key press to add todo
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleAddTodo();
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
-      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+    <div className="min-h-screen bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 flex items-center justify-center">
+      <div className="bg-white shadow-xl rounded-3xl p-8 w-full max-w-lg space-y-6">
+        <h1 className="text-4xl font-semibold text-center text-gray-800">
           Todo App
         </h1>
-        <div className="flex mb-4">
+
+        {/* Input Section */}
+        <div className="flex items-center space-x-3">
           <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            className="flex-1 p-3 rounded-l-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter your task..."
+            onKeyDown={handleKeyPress} // Listen for the Enter key press
+            className="flex-1 p-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md transition duration-300"
+            placeholder="Add a new task..."
           />
           <button
             onClick={handleAddTodo}
-            className="p-3 bg-blue-500 text-white font-medium rounded-r-md hover:bg-blue-600 focus:outline-none"
+            className="p-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-300"
           >
             Add
           </button>
         </div>
-        <TodoList />
+
+        {/* Todo List Section */}
+        <div className="space-y-4">
+          <TodoList />
+        </div>
       </div>
     </div>
   );
